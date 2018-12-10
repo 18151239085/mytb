@@ -1,0 +1,158 @@
+﻿#controlbox
+{
+    position: absolute;
+    left: 0px;
+    margin: 16px;
+    top: 0px;
+    transition: left 0.5s;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    transition-property: -webkit-transform,transform,visibility,opacity;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+}
+
+#controlcontainer
+{
+    top: 0;
+    position: absolute;
+    z-index: 4;
+    margin:0px !important;
+    bottom:0;
+    height:100%;
+}
+
+.searchbox-searchResult {
+    position: relative;
+    border: 2px solid #fff;
+    background: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 360px;
+    height: 350px;
+    margin-top: 10px;
+    padding: 10px;
+    transition-property: background,box-shadow;
+    transition-duration: 0.3s;
+}
+
+
+
+#omnibox.vasquette-margin-enabled {
+    margin: 8px 0 8px 8px;
+}
+
+
+.searchbox
+{
+    position: relative;
+    background: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 360px;
+    height: 44px;
+    border-bottom: 1px solid transparent;
+    padding: 10px;
+    transition-property: background,box-shadow;
+    transition-duration: 0.3s;
+}
+
+
+.searchbox-shadow
+{
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
+
+}
+
+.searchbox-menu-container {
+    position: absolute;
+    z-index: 1003;
+    left: 0;
+    top: 0;
+}
+
+.searchbox-menubutton::before {
+    content: '';
+    display: block;
+    /*background-image: url('/js/Leaflet/images/ic_search_black_24dp_2x.png');
+    background-size: 100%;*/
+    background-position: 0 0;
+    height: 24px;
+    width: 24px;
+    opacity: .62;
+}
+.searchbox-menubutton {
+    display: block;
+    cursor: pointer;
+    padding: 12px 16px;
+}
+
+
+#searchboxinput{
+    width:100%;
+}
+
+.searchbox-searchbutton
+{
+
+    display: block;
+    padding: 2px 15px;
+    cursor:pointer;
+    opacity:0.61;
+}
+.searchbox-searchbutton:hover
+{
+    opacity:0.98;
+}
+.searchbox-searchbutton-container
+{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 10px;
+    border-left: 1px solid #ddd;
+    height: 28px;
+}
+
+.searchbox-searchbutton-container::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 10px;
+    border-left: 1px solid #ddd;
+    height: 28px;
+}
+
+
+
+.searchbox-searchbutton::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url('../images/ic_search_black_24dp_2x.png');
+    background-size: 100%;
+    opacity: .5
+}
+
+
+
+
+button::-moz-focus-inner, input::-moz-focus-inner, textarea::-moz-focus-inner {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+a, button, h1, h2, h3, h4, h5, h6, input, ol, p, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    vertical-align: baseline;
+    background: transparent;
+    list-style: none;
+    overflow: visible;
+}

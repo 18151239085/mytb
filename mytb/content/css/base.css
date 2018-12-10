@@ -1,0 +1,49 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+html, body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, table, th, td {
+    margin: 0;
+    padding: 0;
+    border: none;
+    list-style: none;
+    outline: none;
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: "微软雅黑";
+}
+
+label {
+    font-weight: normal;
+}
+.fa-right{
+    margin-right:5px;
+}
+.fa-left {
+    margin-left: 5px;
+}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+button{
+    outline:none !important;
+}
+button:focus {
+    border: 1px solid #4cae4c !important;
+}

@@ -1,0 +1,84 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.conditions{
+    padding:10px 0;
+    border:1px solid #ede;
+    border-radius:5px;
+}
+.conditions .select > li {
+    padding: 10px 25px;
+    border-bottom: 1px dotted #eee;
+}
+
+    .conditions .select > li:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+.conditions .select-list:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.conditions .select-list > li {
+    height: 24px;
+    line-height: 24px;
+    margin-left: 5px;
+    float: left;
+    cursor: pointer;
+    padding: 0 10px;
+}
+    .conditions .select-list > li:hover {
+        background: #d4f1f2;
+    }
+.conditions .select-list .selected {
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+    color: #fff;
+    background-color: #5F9EA0;
+    border-radius: 2px;
+}
+
+    .conditions .select-list .selected:hover {
+        color: #fff !important;
+        background-color: #5F9EA0 !important;
+    }
+
+.select-result .select-yes {
+    padding: 0 5px;
+    border: 1px dashed #5F9EA0;
+    color: #5F9EA0;
+}
+
+    .select-result .select-yes a {
+        color: #5F9EA0;
+    }
+
+.conditions .select-result .select-no {
+    color: #999;
+}
+
+.conditions .select-result > ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.conditions .select-result > ul > li {
+    margin-left: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.conditions .select-result > div > span {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+    .conditions .select-result > div > span:hover {
+        color: #5F9EA0;
+    }

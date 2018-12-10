@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mytb", "mytb\mytb.csproj", "{56EAB253-92EE-4073-8DD5-63980BAB70FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reposity", "reposity\reposity.csproj", "{5E36497A-DC48-4198-BED1-3EB61192F126}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56EAB253-92EE-4073-8DD5-63980BAB70FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56EAB253-92EE-4073-8DD5-63980BAB70FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56EAB253-92EE-4073-8DD5-63980BAB70FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56EAB253-92EE-4073-8DD5-63980BAB70FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E36497A-DC48-4198-BED1-3EB61192F126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E36497A-DC48-4198-BED1-3EB61192F126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E36497A-DC48-4198-BED1-3EB61192F126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E36497A-DC48-4198-BED1-3EB61192F126}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4215B06E-FE14-4162-9EF8-C686A0FFBC1A}
+	EndGlobalSection
+EndGlobal
