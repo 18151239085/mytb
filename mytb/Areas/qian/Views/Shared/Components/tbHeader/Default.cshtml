@@ -106,33 +106,81 @@
 		margin: 0 auto;
 		width: 860px;
 	}
-
-		.search_form form {
-			position: relative;
-			margin-left: 30px !important;
-			display: inline-block;
+		.search_form form 
+		{
+		position:relative;
+		margin-left:150px!important;
+		display:inline-block;
 		}
-
-	.search_inp_border {
-		border: 1px solid #b8b8b8;
-		border-bottom-color: #ccc;
+	.search_ipt 
+	{
+		height:30px;
+		width:517px;
+		padding:4px 10px 4px 7px;
+		line-height:30px;
+		color:black;
+		font-size:16px;
+		float:left;
+		display:inline;
 	}
-
-	.search_ipt {
-		font-family: Arial;
-		height: 30px;
-		width: 517px;
-		padding: 4px 10px 4px 7px;
-		line-height: normal;
-		overflow: hidden;
-		color: #53545e;
-		font-size: 16px;
-		float: left;
-		display: inline;
+	.search_inp_border 
+	{
+	   border:1px solid #b8b8b8;
+	   border-bottom-color:#ccc;
 	}
-
-	.search_main_wrap {
-		margin-bottom: 35px;
+	.search_btn_enter_ba_wrap 
+	{
+	margin-left:-1px;
+	float:left;
+	width:104px;
+	height:40px;
+	display:inline-block;
+	margin:0 0 0 -2px;
+	outline:0;
+	}
+		.search_btn_enter_ba_wrap a 
+		{
+		height:39px;
+		line-height:39px;
+		width:104px;
+		float:left;
+		display:inline;
+		text-align:center;
+		border:1px solid #38f;
+		background:#3385ff;
+		text-decoration:none;
+		color:#fff;
+		font-size:16px;
+		}
+	.search_btn_wrap 
+	{
+	 float:left;
+	 width:104px;
+	 height:40px;
+	 display:inline-block;
+	 margin:0 0 0 4px;
+	}
+		.search_btn_wrap a 
+		{
+		height:38px;
+		line-height:38px;
+		color:#38f;
+		text-decoration:none;
+		border:1px solid #38f;
+		font-size:16px;
+		width:102px;
+		text-align:center;
+		float:left;
+		display:inline;
+		}
+	.search_logo {
+		background-image: url(/content/image/111.png);
+		width:135px;
+		height:56px;
+		float:left;
+		margin-right:20px;
+		top:-9px;
+		position:relative;
 	}
 </style>
 <div id="com_userbar" class="userbar" style="z-index:10005">
@@ -226,11 +274,15 @@
 	<div class="search_main_wrap">
 		<div class="search_main clearfix">
 			<div class="search_form">
-				<a href="#" class="search_logo">
-					<img src="/content/image/111.png" />
-				</a>
+				<a href="#" class="search_logo"></a>
 				<form>
 					<input class="search_ipt search_inp_border j_search_input tb_header_search_input" />
+					<span class="search_btn_enter_ba_wrap">
+					   <a class="search_btn search_btn_enter_ba j_enter_ba" href="#">进入贴吧</a>
+					</span>
+					<span class="search_btn_wrap">
+					    <a class="senior-search-link" href="#">高级搜索</a>
+					 </span>
 				</form>
 			</div>
 			<div class="suggestion">

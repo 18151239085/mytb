@@ -1,0 +1,541 @@
+﻿.k-invalid {
+    border-width: 1px;
+    border: 1px solid red;
+}
+
+/*去除所有链接的下划线*/
+a:link {
+    text-decoration: none; /* 指正常的未被访问过的链接*/
+}
+
+a:visited {
+    text-decoration: none; /*指已经访问过的链接*/
+}
+
+a:hover {
+    text-decoration: none; /*指鼠标在链接*/
+}
+
+a:active {
+    text-decoration: none; /* 指正在点的链接*/
+}
+
+body {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.gridPanel {
+    overflow: auto;
+    width: 100%;
+    /*height:500px*/
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#loadingPage .loading-shade {
+    cursor: wait;
+    display: block;
+    width: 450px;
+    height: 100%;
+    opacity: 0.0;
+    filter: alpha(opacity=00);
+    background: #fff;
+    /*position: absolute;
+    top: 0;
+    left: 0;*/
+    z-index: 100009;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+}
+
+#loadingPage .loading-content {
+    cursor: default;
+    /*position: absolute;*/
+    z-index: 100019;
+    width: 400px;
+    border: 1px solid rgb(187, 187, 187);
+    height: 80px;
+    line-height: 80px;
+    padding-left: 80px;
+    padding-right: 20px;
+    border-radius: 10px;
+    color: rgb(102, 102, 102);
+    font-size: 20px;
+    /*left: 0px;
+    top: 0px;*/
+    background: url(../images/loading.gif) 5px 50% no-repeat rgb(255, 255, 255);
+    box-shadow: 0 1px 15px rgba(0,0,0,.175);
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+}
+
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* reset everything to the default box model */
+
+/**, :before, :after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}*/
+
+/* set a border-box model only to elements that need it */
+
+.form-control, /* if this class is applied to a Kendo UI widget, its layout may change */
+.container,
+.container-fluid,
+.row,
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7,
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.row,
+.container-fluid {
+    padding: 2px;
+    margin: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+/** sgy 自定义css设置*/
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+.layui-layout-admin .layui-footer {
+    height: 2em;
+}
+
+.layui-form-item {
+    margin-bottom: 5px;
+    clear: both;
+}
+
+.layui-input-block .k-textbox {
+    display: block;
+    width: 100%;
+}
+
+.layui-input-block .k-widget {
+    display: block;
+    width: 100%;
+}
+
+
+.layui-form-label {
+    float: left;
+    display: block;
+    padding: 5px;
+    width: 130px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.layui-input-block {
+    margin-left: 140px;
+    min-height: 36px;
+}
+
+.k-i-loading {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.layui-form-switch {
+    width: 4em;
+}
+
+.form {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border-collapse: collapse;
+    border-width: 3px 1px 1px;
+    table-layout: fixed
+}
+
+    .form .formTitle {
+        position: relative;
+        left: 0px;
+        text-align: right;
+        white-space: nowrap;
+        font-weight: normal;
+        width: 90px;
+        padding-right: 15px;
+    }
+
+        .form .formTitle font {
+            color: red;
+            position: absolute;
+            right: 0px;
+        }
+
+    .form .formValue {
+        position: relative;
+        padding: 5px;
+        width: auto;
+    }
+
+        .form .formValue input.form-control {
+            height: 30px;
+            line-height: 30px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-right: 0px;
+            padding-left: 5px;
+            resize: none;
+            border-radius: 0px;
+            box-shadow: none;
+        }
+
+        .form .formValue select.form-control {
+            border-radius: 0px;
+            box-shadow: none;
+        }
+
+        .form .formValue textarea.form-control {
+            padding-left: 5px;
+            resize: none;
+            border-radius: 0px;
+            box-shadow: none;
+        }
+
+        .form .formValue .input-group .btn {
+            padding: 4px 0px;
+            font-size: 14px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 0px;
+        }
+
+            .form .formValue .input-group .btn .fa-ellipsis-h {
+                margin-top: 4.5px;
+            }
+
+        .form .formValue.has-error .form-control.error {
+            border-color: #e7bebe;
+            background-color: #fffafa;
+        }
+
+        .form .formValue.has-error .form-control-feedback.error {
+            color: #e46f61;
+            top: 5.5px;
+            right: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 99;
+        }
+
+        .form .formValue.has-error .form-control.success {
+            border-color: #b0dd9c;
+            background-color: #f3f7f1;
+        }
+
+        .form .formValue.has-error .form-control-feedback.success {
+            color: #8cc474;
+            top: 5px;
+            right: 4px;
+            font-size: 16px;
+        }
+
+        .form .formValue.has-error .select2-selection--single {
+            border-color: #e7bebe;
+            background-color: #fffafa;
+        }
+
+        .form .formValue.has-error .tooltip-arrow {
+            border-left-color: #d73d32;
+        }
+
+        .form .formValue.has-error .tooltip-inner {
+            background-color: #d73d32;
+        }
+
+/**弹窗提示**/
+.poptip {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 6px 10px 5px;
+    *padding: 7px 10px 4px;
+    line-height: 16px;
+    color: #DB7C22;
+    font-size: 12px;
+    background-color: #FFFCEF;
+    border: solid 1px #FFBB76;
+    border-radius: 2px;
+    box-shadow: 0 0 3px #ddd;
+}
+
+.poptip-arrow {
+    position: absolute;
+    overflow: hidden;
+    font-style: normal;
+    font-family: simsun;
+    font-size: 12px;
+    text-shadow: 0 0 2px #ccc;
+}
+
+    .poptip-arrow em, .poptip-arrow i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-style: normal;
+    }
+
+    .poptip-arrow em {
+        color: #FFBB76;
+    }
+
+    .poptip-arrow i {
+        color: #FFFCEF;
+        text-shadow: none;
+    }
+
+.poptip-arrow-top, .poptip-arrow-bottom {
+    height: 6px;
+    width: 12px;
+    left: 12px;
+    margin-left: -6px;
+}
+
+.poptip-arrow-left, .poptip-arrow-right {
+    height: 12px;
+    width: 6px;
+    top: 12px;
+    margin-top: -6px;
+}
+
+.poptip-arrow-top {
+    top: -6px;
+}
+
+    .poptip-arrow-top em {
+        top: -1px;
+    }
+
+    .poptip-arrow-top i {
+        top: 0px;
+    }
+
+.poptip-arrow-bottom {
+    bottom: -6px;
+}
+
+    .poptip-arrow-bottom em {
+        top: -8px;
+    }
+
+    .poptip-arrow-bottom i {
+        top: -9px;
+    }
+
+.poptip-arrow-left {
+    left: -6px;
+}
+
+    .poptip-arrow-left em {
+        left: 1px;
+    }
+
+    .poptip-arrow-left i {
+        left: 2px;
+    }
+
+.poptip-arrow-right {
+    right: -6px;
+}
+
+    .poptip-arrow-right em {
+        left: -6px;
+    }
+
+    .poptip-arrow-right i {
+        left: -7px;
+    }
+
+.hide {
+    display: none;
+}
+
+/**出错的风格*/
+.input-validation-error {
+    border: 1px solid #ff0000 !important;
+    /*background-color: red !important;*/
+}
+
+
+/* The element to be centered, can
+   also be of any width and height */
+.smart-centered {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+}
+
+.required-input {
+    color: red;
+    font-weight: bold
+}
+
+
+/*====================KendoUI兼容的style==================*/
+.k-icon::before {
+    margin: initial;
+}
+
+
+span.k-select.k-i-loading {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/*========================================================*/
+
+/****************用于功能提示信息的样式********************/
+.info-body {
+    background: #dfdfdf url(/errors/css/bg_noise.jpg) repeat;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    height: 100%
+}
+
+.info-title {
+    position: relative;
+    display: block;
+    font: 36px Arial, sans-serif;
+    color: #0061a5;
+    text-shadow: 2px 2px #f7f7f7;
+    text-align: center;
+}
+
+.info-icon {
+    font-size: 36px;
+    color: #0061a5;
+    text-shadow: 2px 2px #f7f7f7;
+}
+
+.info-content {
+    position: relative;
+    margin: 0 auto;
+    /*width: 600px;*/
+    background: white;
+    -moz-box-shadow: 0 0 0 3px #ededed inset, 0 0 0 1px #a2a2a2, 0 0 20px rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 0 0 3px #ededed inset, 0 0 0 1px #a2a2a2, 0 0 20px rgba(0,0,0,.15);
+    box-shadow: 0 0 0 3px #ededed inset, 0 0 0 1px #a2a2a2, 0 0 20px rgba(0,0,0,.15);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    z-index: 5;
+}
+
+    .info-content h2 {
+        background: url(/errors/css/404_s-divider.jpg) no-repeat;
+        background-position: bottom;
+        padding: 12px 0 22px 0;
+        font: 20px 'TeXGyreScholaRegular', Arial, sans-serif;
+        color: #8e8e8e;
+        text-align: center;
+    }
+
+    .info-content p {
+        position: relative;
+        padding: 20px;
+        font-size: 13px;
+        line-height: 25px;
+        color: #b5b5b5;
+    }
+
+/***********************************************************/
+
+body .layui-layer-title {
+    background: #5f9ea0;
+    color: #fff;
+    border: none;
+}
+
+body .layui-layer-btn {
+
+}
+
+    body .layui-layer-btn a {
+        background: #333;
+        padding-left: 7px;
+        padding-right: 7px;
+        margin: 2px;
+        text-align: center;
+        vertical-align: middle;
+        background: #999;
+        border-color: #999;
+        height: 32px;
+        line-height: 30px;
+        border-radius: 3px;
+    }
+
+    body .layui-layer-btn .layui-layer-btn0 {
+        background: #5f9ea0;
+        border-color: #5f9ea0;
+    }
+
+    body .layui-layer-btn .layui-layer-btn1 {
+        background: #999;
+        border-color: #999;
+    }

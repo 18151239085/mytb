@@ -5,13 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\qian\新文件夹\**" />
+    <Content Remove="Areas\qian\新文件夹\**" />
+    <EmbeddedResource Remove="Areas\qian\新文件夹\**" />
+    <None Remove="Areas\qian\新文件夹\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="SmartMap.NetPlatform.Core" Version="2.1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\hou\" />
-    <Folder Include="Areas\qian\新文件夹\" />
+    <Folder Include="Areas\hou\Components\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\hou\Views\HTDL\login.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\hou\Views\SHTZ\sh.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\qian\Views\USER\Register.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
