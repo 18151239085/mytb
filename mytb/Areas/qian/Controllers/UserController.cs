@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Models;
 using Newtonsoft.Json;
 using Repository;
-using Repositorys;
 using SmartMap.NetPlatform.Core;
 using SmartMap.NetPlatform.Core.Controllers;
 using SmartMap.NetPlatform.Core.Helper;
-using SmartMap.NetPlatform.Mapping.IRepositories;
 
 namespace mytb.Controllers
 {
@@ -41,6 +37,10 @@ namespace mytb.Controllers
 
 			return RedirectToAction("Home", "../qian");
 		}
+        public bool isLogin() {
+            var model = HttpContext.Session.Get("CurrentUser");//获取session
+            return model != null;
+        }
 		public bool DORegister()
 		{
 			ry ry = new ry();
