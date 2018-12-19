@@ -16,6 +16,8 @@ namespace mytb.Controllers
 	[Area("qian")]
 	public class ftzController : PlatBaseController
 	{
+
+
 		private readonly attachRepository attachRepository;
 		private readonly tzbRepository tzbRepository;
 		private IOptions<FtpConnectionString> _FtpConnection;
