@@ -17,7 +17,6 @@ namespace mytb.Controllers
 	[Area("hou")]
 	public class SHTZController : PlatBaseController
 	{
-	
 		public SHTZController(IOptions<List<PlatConnectionString>> configs, IOptions<FtpConnectionString> ftpConnection)
 		{
 			this._configs = configs;
