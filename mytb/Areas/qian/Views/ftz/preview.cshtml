@@ -1,0 +1,166 @@
+﻿@{
+	ViewData["Title"] = "图片预览";
+}
+
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.common.min.css" />
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.silver.min.css" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="~/css/SmartFrame.css" />
+	<link rel="stylesheet" href="/Content/css/base.css">
+	<link rel="stylesheet" href="~/css/viewer.min.css">   <!--图片浏览的控件css-->
+	<style>
+		#dowebok {
+			width: 100%;
+			margin: 5px auto;
+			font-size: 0;
+			overflow: auto;
+		}
+
+			#dowebok li {
+				display: inline-block;
+				width: 110px;
+				margin-left: 1%;
+				padding-top: 1%;
+				position: relative;
+			}
+
+				#dowebok li img {
+					width: 100%;
+					cursor: pointer;
+				}
+
+		.imgDiv .k-i-close {
+			display: none;
+			position: absolute;
+			top: -5px;
+			right: -10px;
+			font-size: 32px;
+			color: red;
+		}
+
+		.imgDiv:hover .k-i-close {
+			display: block;
+		}
+	</style>
+</head>
+
+<div class="main-box">
+	<div class="container main-container">
+		<div class="col-lg-12 blog__content mb-30">
+
+			<div class="k-content wide">
+				<div class="wrapper">
+					<ul id="dowebok"></ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/layui/layui.js"></script>
+<script src="~/lib/kendoui/js/kendo.all.min.js"></script>
+<script src="~/js/SmartFrame.js"></script>
+<script src="~/js/viewer.min.js"></script>
+<script type="text/x-kendo-template" id="template">
+	<li class="imgDiv">
+		<img data-original="/qian/ftz/DownloadFile?name=#= name #&keyValue=#= tag #"
+			 src="/qian/ftz/DownloadFile?name=#= encodeURI(name) #&keyValue=#= tag #"
+			 alt="#: name # " title="#: name # " />
+		<a class="img-wrap" href="javascript:void(0);">
+			<span class="k-icon k-i-close"></span>
+		</a>
+	</li>
+</script>
+<script type="text/javascript">
+	var viewer = null;
+	var parentName = getQueryStringByName("parentName");
+
+	//根据QueryString参数名称获取值
+	function getQueryStringByName(name) {
+		var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+		if (result == null || result.length < 1) {
+			return "";
+		}
+		return result[1];
+	}
+	$(function () {
+
+		var keyValue = unescape(GetQueryString("keyValue"));
+		var template = kendo.template($("#template").html());
+		$.get("/qian/ftz/getupLoadFile", { keyValue: keyValue, date: new Date() },
+			function (data) {
+				var initialFiles = [];
+			
+				for (var i = 0; i < data.length; i++) {
+					v = data[i];
+					var t = { name: v.name, tag: keyValue };
+					initialFiles.push(t);
+				}
+				//$.each(data, function (ids, v) {
+				//	var t = { name: v.Name, tag: keyValue };
+				//	initialFiles.push(t);
+				//});
+				$("#dowebok").html(kendo.render(template, initialFiles));
+				if (viewer != null)
+					viewer.destroy();
+				viewer = new Viewer(document.getElementById('dowebok'), {
+					url: 'data-original'
+				});
+
+			}
+		);
+
+		//预览图片删除时ftp上同步删除，父页面图片列表对应删除
+		$("#dowebok").on("click", ".img-wrap", function () {
+			$(this).parent(".imgDiv").remove();
+			var name = $(this).parent(".imgDiv").find("img").attr("title")
+			$.ajax({
+				url: "/qian/ftz/DelImg",
+				data: { name: name, keyValue: keyValue },
+				success: function () {
+					//弹框页有window.name == layui - layer - iframe1 == parentName，普通页面为""
+					//以此判断父页面是弹框页还是普通页面
+					var iframeWin;
+					if (parentName == "") {
+						iframeWin = window.parent;
+					} else {
+						iframeWin = window.parent[parentName];
+					}
+					iframeWin.reloadings(name);
+
+					//判断主页面的弹框页是不是当前页
+					//if (parentName == "") {
+					//    var lis = $(window.parent.document).find(".k-content .k-upload-files li");
+					//} else {
+					//    var lis = $(window.parent.frames["layui-layer-iframe1"].document).find(".k-content .k-upload-files li");
+					//}
+					//lis.each(function (i, e) {
+					//    if ($(e).find(".k-file-name").attr("title").trim() == name.trim()) {
+					//        $(e).remove();
+					//        return false;
+					//    }
+					//})
+
+				}
+			})
+
+		})
+	})
+	function submitForm() {
+		$.modalClose();
+
+	}
+
+	//获取search
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return r[2]; return null;
+	}
+</script>
+

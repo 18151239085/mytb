@@ -1,0 +1,308 @@
+﻿@{
+	ViewData["Title"] = "增加新闻资讯";
+	Layout = null;
+}
+
+@model Tuple<Models.tzb, IList<Models.attach>>
+
+
+@using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { name = "saveForm", id = "saveForm", @class = "layui-form" }))
+{   
+	
+	<head>
+		<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.common.min.css" />
+		<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.silver.min.css" />
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="~/css/SmartFrame.css" />
+		<link rel="stylesheet" href="~/css/viewer.min.css">
+		<style>
+			.k-content {
+				height: auto;
+				border: 1px solid #ceced2;
+			}
+
+			.k-header {
+				border: none;
+			}
+
+			.k-textbox .k-tooltip {
+				padding: 5px 5px 5px 17px;
+			}
+
+			.k-textbox .k-icon {
+				margin: -8px -16px 0;
+			}
+		</style>
+	</head>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="must-enter">*</span>标题：</label>
+				<div class="layui-input-block formValue" style="width:85%">
+					@Html.TextBoxFor(m => m.Item1.bt, new { @class = "k-textbox", @placeholder = "请输入标题", required = "required", validationMessage = "标题不可为空" })
+					<div class="hide">
+						@Html.ValidationMessageFor(m => m.Item1.bt)
+						@Html.TextBoxFor(m => m.Item1.id, new { @class = "k-textbox" })
+						@Html.ValidationMessageFor(m => m.Item1.id)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="must-enter">*</span>内容：</label>
+				<div class="layui-input-block formValue" style="width:85%;height:100px">
+					@Html.TextAreaFor(m => m.Item1.content, new { @class = "k-textbox", rows = "4" , required = "required", validationMessage = "分类不可为空" })
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="layui-form-item">
+				<label class="layui-form-label">附件材料：</label>
+				<div class="layui-input-block formValue" style="width:85%;height:100px;">
+					@using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { name = "saveFormfile", id = "saveFormfile", }))
+					{
+
+						<div class="k-content wide">
+							<input name="files" id="files" type="file" />
+							@*<div class="wrapper">
+									<ul id="dowebok"></ul>
+								</div>*@
+							<button class="k-button" id="preview" style="margin:10px;display:none">图片预览</button>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+}
+<style>
+	.layui-form-label {
+		float: left;
+		display: block;
+		padding: 5px;
+		width: 80px;
+		font-weight: 400;
+		text-align: right;
+	}
+
+	.must-enter {
+		color: red;
+		font-size: 25px;
+	}
+
+	.layui-input-block {
+		margin-left: 80px;
+		padding: 5px;
+		min-height: 36px;
+		width: 85%;
+	}
+
+	#dowebok {
+		width: 100%;
+		margin: 5px auto;
+		font-size: 0;
+		overflow: auto;
+	}
+
+		#dowebok li {
+			display: inline-block;
+			width: 110px;
+			margin-left: 1%;
+			padding-top: 1%;
+			position: relative;
+		}
+
+			#dowebok li img {
+				width: 100%;
+				cursor: pointer;
+			}
+
+	.imgDiv .k-i-close {
+		display: none;
+		position: absolute;
+		top: -5px;
+		right: -10px;
+		font-size: 32px;
+		color: red;
+	}
+
+	.imgDiv:hover .k-i-close {
+		display: block;
+	}
+
+	/*.k-dropdown-wrap {
+		border-style: none;
+	}*/
+</style>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="/lib/kendoui/js/kendo.all.min.js"></script>
+<script src="~/js/SmartFrame.js"></script>
+@*<script type="text/javascript" charset="utf-8" src="~/lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="~/lib/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="~/lib/ueditor/lang/zh-cn/zh-cn.js"></script>*@
+<script src="~/js/viewer.min.js"></script>
+<script type="text/x-kendo-template" id="template">
+	<li class="imgDiv">
+		<img data-original="/qian/ftz/DownloadFile?name=#= name #&keyValue=#= tag #"
+			 src="/qian/ftz/DownloadFile?name=#= name #&keyValue=#= tag #"
+			 alt="#: name # " title="#: name # " />
+		<a class="img-wrap" href="javascript:void(0);">
+			<span class="k-icon k-i-close"></span>
+		</a>
+	</li>
+</script>
+@*<script type="text/javascript">
+	//实例化编辑器
+	//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+	var ue = UE.getEditor('editor');
+</script>*@
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		picView();
+		//删除图片
+		$("#dowebok").on("click", ".img-wrap", function () {
+			$(this).parent(".imgDiv").remove();
+			var name = $(this).parent(".imgDiv").find("img").attr("title")
+			var keyValue = document.getElementById("Item1_id").value;
+			$.ajax({
+				url: "/qian/ftz/DelImg",
+				data: { name: name, keyValue: keyValue },
+				success: function () {
+
+				}
+			})
+		})
+
+		// 图片预览
+		$("#preview").on('click', function (e) {
+			e.preventDefault();
+			var keyValue = $("#Item1_id").val();
+			$.modalOpen({
+				id: "Form2",
+				title: "图片预览",
+				url: "/qian/ftz/Preview?keyValue=" + keyValue + "&parentName=" + window.name,
+				width: "800px",
+				height: "600px",
+				callBack: function (iframeId) {
+					top.frames[iframeId].submitForm();
+				}
+			});
+		});
+
+	});
+
+	function reloadings(fileName) {
+		var upload = $("#files").data("kendoUpload"),
+			files = upload.getFiles();
+		for (var i = 0; i < files.length; i++) {
+			if (files[i].name == fileName.trim()) {
+				upload.removeFileByUid(files[i].uid);
+			}
+		}
+	}
+
+	function submitForm(reloading) {
+		//title = $("#Item1_MH_TITLE").val();
+		//if (title == "") {
+		//    $.modalMsg("请输入标题", 'error')
+		//    $("#Item1_MH_TITLE").focus();
+		//    return false;
+		//}
+		var bt = $("#Item1_bt").val();
+		if (bt == "") {
+			$.modalMsg("请输入标题", 'error')
+			$("#Item1_bt").focus();
+			return false;
+		}
+		var nr = $("#Item1_content").val();
+		if (nr == "") {
+			$.modalMsg("请输入文档内容", 'error')
+			$("#Item1_content").focus();
+			return false;
+		}
+		if (!$('#saveForm').formValid()) {
+			return false;
+		}
+		$.submitForm({
+			url: "/qian/ftz/SaveNews",
+			param: $("#saveForm").serialize(),
+			success: function () {
+				$.modalClose();
+				reloading();
+			}
+		})
+	}
+
+	var keyValue = document.getElementById("Item1_id").value;
+	var template = kendo.template($("#template").html());
+	function picView() {
+		$.ajax({
+			url: "/qian/ftz/getupLoadFile",
+			type: "GET",
+			dataType: "json",
+			data: { keyValue: keyValue },
+			success: function (data) {
+				var initialFiles = [];
+				$.each(data, function (ids, v) {
+					var t = { name: v.Name, tag: keyValue };
+					initialFiles.push(t);
+				});
+				$("#files").kendoUpload({
+					async: {
+						saveUrl: "save?keyValue=" + keyValue,
+						removeUrl: "remove?keyValue=" + keyValue,
+						autoUpload: true
+					},
+					multiple: true,//批量
+					validation: {
+						allowedExtensions: [".jpg", ".jpeg", ".png"]
+					},
+					files: initialFiles,
+					upload: onUpload,
+					success: onSuccess,
+					showFileList: true,
+					localization: {
+						select: "添加文件",
+						headerStatusUploaded: "上传成功",
+						headerStatusUploading: "上传中.....",
+						invalidFileExtension: "不允许的文件后缀名",
+						invalidFiles: "文件失败",
+						invalidMaxFileSize: "文件体积超过运行大小",
+						invalidMinFileSize: "文件体积小于最低要求",
+						statusFailed: "上传失败",
+						statusUploaded: "上传成功",
+						statusUploading: "上传中......"
+					}
+				});
+			}
+		});
+	}
+
+	//这个函数的是上传成功之后执行的函数
+	function onSuccess(e) {
+		var keyValue = document.getElementById("Item1_id").value;
+		var template = kendo.template($("#template").html());
+		$.get("/qian/ftz/getupLoadFile", { keyValue: keyValue, date: new Date() },
+			function (data) {
+				if (data.length == 0) {
+					$("#preview").hide();
+
+				} else {
+					$("#preview").show();
+
+				}
+			}
+		);
+	}
+	// 这个函数是上传之前执行的函数
+	function onUpload(e) {
+		var files = e.files;
+	}
+
+</script>

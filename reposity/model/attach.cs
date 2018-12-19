@@ -15,7 +15,9 @@ namespace Models
 		public virtual string tp_lj { get; set; }
 		public virtual int ywlx { get; set; }
 		public virtual string yw_id { get; set; }
+		public virtual string creater { get; set; }
 		public virtual DateTime create_time { get; set; }
-	
+		public virtual string MODIFIER { get; set; }
+		public virtual DateTime MODIFY_TIME { get; set; }
 	}
 }

@@ -1,0 +1,145 @@
+﻿
+@{
+	ViewData["Title"] = "详细信息";
+	Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>石嘴山市不动产交易二级市场</title>
+	@*<link rel="stylesheet" href="~/lib/layui/css/layui.css" media="all">*@
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/Modules/SmartFrame.Portal.Module/Content/css/base.css">
+	<link rel="stylesheet" href="/Modules/SmartFrame.Portal.Module/Content/css/style.css">
+	<link rel="stylesheet" href="~/lib/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/lib/swiper/dist/css/swiper.css">
+	<style>
+		.main-box {
+			background: #eee;
+		}
+
+			.main-box > div {
+				background: #fff;
+			}
+
+		.breadcrumb {
+			background: #fff;
+			padding-left: 0;
+		}
+
+			.breadcrumb .active a {
+				color: #777;
+			}
+
+		.pagination {
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<!--头部信息-->
+	@await Component.InvokeAsync("tbHeader")
+	@model Models.mh_attach_tzb
+	<!--内容信息-->
+	<div class="main-box">
+		<div class="container main-container">
+			<div class="col-lg-12 blog__content mb-30">
+				<ol class="breadcrumb">
+					<li><a href="/Menhu/Home/"><i class="fa fa-home"></i></a></li>
+					<li><a href="#" id="sup"></a></li>
+					<li class="active"><a href="#">@Html.DisplayFor(m => m.tzb.bt, new { @class = "", @readonly = true })</a></li>
+				</ol>
+				<article class="entry">
+					<div class="single-post__entry-header entry__header">
+						<h1 class="single-post__entry-title text-center"> @Html.DisplayFor(m => m.tzb.content, new { @class = "", @readonly = true }) </h1>
+						<ul class="entry__meta text-center">
+							<li class="entry__meta-date"> <i class="fa fa-calendar"></i> @Html.DisplayFor(m => m.tzb.create_time)</li>
+						</ul>
+					</div>
+					<div class="entry__img-holder"></div>
+					<div class="entry__article">
+						<div id="inf"></div>
+						<figure>
+							@{
+								@foreach (var item in Model.attach)
+								{
+									if (Model.tzb.id == item.yw_id)
+									{
+										<img data-original="/qian/ftz/DownloadFile?name=@item.tp_name&keyValue=@Html.DisplayFor(m => m.tzb.id)" src="/qian/ftz/DownloadFile?name=@System.Web.HttpUtility.UrlEncode(item.tp_name)&keyValue=@Html.DisplayFor(m => m.tzb.id)" alt="@item.tp_name" title="@Model.tzb.bt" class="lazyload" />
+
+									}
+
+								}
+							}
+							@*<figcaption>图2，说明文字</figcaption>*@
+						</figure>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/jquery/dist/jquery.newsTicker.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	@*<script src="~/lib/layui/layui.js"></script>*@
+	@*<script src="~/js/SmartFrame.js"></script>*@
+	@*<script src="~/lib/kendoui/js/kendo.all.min.js"></script>*@
+	<script src="/Modules/SmartFrame.Portal.Module/Content/js/script.js"></script>
+	<script src="/Modules/SmartFrame.Portal.Module/Content/js/highcharts.js"></script>
+	<script src="/Modules/SmartFrame.Portal.Module/Content/js/exporting.js"></script>
+	@*<script src="/Modules/SmartFrame.Portal.Module/Content/js/tubiao.js"></script>*@
+	<script src="~/lib/swiper/dist/js/swiper.js"></script>
+	<script>
+		$(function () {
+			$("#inf").html($("#self_MH_NEWS_MH_INF").val());
+			$('.tabs__trigger').on('click', function (e) {
+				var currentAttrValue = $(this).attr('href');
+				$('.tabs__content-trigger ' + currentAttrValue).stop().fadeIn(1000).siblings().hide();
+				$(this).parent('li').addClass('tabs__item--active').siblings().removeClass('tabs__item--active');
+				e.preventDefault();
+			});
+
+			//Scroll to Top
+			$(window).scroll(function () {
+				scrollToTop();
+			});
+
+			function scrollToTop() {
+				var scroll = $window.scrollTop();
+				var $backToTop = $("#back-to-top");
+				if (scroll >= 50) {
+					$backToTop.addClass("show");
+				} else {
+					$backToTop.removeClass("show");
+				}
+			}
+
+			$('a[href="#top"]').on('click', function () {
+				$('html, body').animate({ scrollTop: 0 }, 1000, "easeInOutQuint");
+				return false;
+			});
+
+			$("#sup").html(decodeURI(GetQueryString("sup")));
+			$("#sup").attr("href", unescape(GetQueryString("supUrl")));
+			console.log(unescape(GetQueryString("supUrl")));
+
+			//富文本表格添加样式
+			$("table").addClass("table table-bordered table-hover table-condensed");
+
+		})
+		$(function () {
+
+		})
+		//获取search
+		function GetQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return r[2]; return null;
+		}
+	</script>
+</body>
+</html>

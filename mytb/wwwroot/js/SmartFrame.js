@@ -252,7 +252,7 @@ $.modalWfProcessOpen = function (options) {
 
 $.modalConfirm = function (content, callBack, area) {
 	if (area) {
-		t=top.layer.confirm(content, {
+		top.layer.confirm(content, {
 			icon: "fa-exclamation-circle",
 			title: "系统提示",
 			btn: ['确认', '取消'],
@@ -266,7 +266,7 @@ $.modalConfirm = function (content, callBack, area) {
 			callBack(false, index)
 		});
 	} else {
-		t=top.layer.confirm(content, {
+		top.layer.confirm(content, {
 			icon: "fa-exclamation-circle",
 			title: "系统提示",
 			btn: ['确认', '取消'],
@@ -278,7 +278,6 @@ $.modalConfirm = function (content, callBack, area) {
 			callBack(false, index)
 		});
 	}
-	return t;
 }
 $.modalAlert = function (content, type) {
     var icon = "";

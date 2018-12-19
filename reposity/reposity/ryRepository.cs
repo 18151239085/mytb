@@ -44,16 +44,16 @@ namespace Repository
 				return d;
 			}
 		}
-		public ry Check(string yhm, string mm)
-		{
-			string m = Md5.GetMD5(mm);
-			string executeSql = @"select * from ry t where t.rylx=0 and t.yhm=@lname and t.mm=@pwd";
-			using (var db = Connection)
-			{
-				var condition = new { lname = yhm, pwd = m.ToLower() };
-				ry d = db.DbConnecttion.Query<ry>(executeSql, condition).FirstOrDefault();
-				return d;
-			}
-		}
-	}
+        public ry Check(string yhm, string mm)
+        {
+            string m = Md5.GetMD5(mm);
+            string executeSql = @"select * from ry t where t.rylx=0 and t.yhm=@lname and t.mm=@pwd";
+            using (var db = Connection)
+            {
+                var condition = new { lname = yhm, pwd = m.ToLower() };
+                ry d = db.DbConnecttion.Query<ry>(executeSql, condition).FirstOrDefault();
+                return d;
+            }
+        }
+    }
 }

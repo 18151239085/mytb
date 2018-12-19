@@ -18,6 +18,6 @@ namespace Models
 		public virtual string content { get; set; }
 		public virtual DateTime create_time { get; set; }
 		public virtual string cjr { get; set; }
-	
+		public virtual int TSTATUS { get; set; }
 	}
 }
