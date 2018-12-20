@@ -3,6 +3,7 @@
 
 #  NeGetÅäÖÃÎÄ¼ş
 *.csproj
+appsettings.json
 # User-specific files
 *.suo
 *.user
