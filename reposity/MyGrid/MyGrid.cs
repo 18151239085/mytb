@@ -54,12 +54,16 @@ namespace reposity.MyGrid
             try
             {
                 var memery = new System.IO.MemoryStream();
+                // Controller.Request.Body是post请求体,将请求体复制memery
                 Controller.Request.Body.CopyTo(memery);
                 memery.Position = 0;
+                //二进制文件,文本
                 string Content = new System.IO.StreamReader(memery, System.Text.UTF8Encoding.UTF8).ReadToEnd();
                 memery.Position = 0;
                 Controller.Request.Body = memery;
-                return  JsonConvert.DeserializeObject<MyGrid>(Content);
+                // 将json字符串变成实体类
+                MyGrid tmp=JsonConvert.DeserializeObject<MyGrid>(Content);
+                return tmp;
             }
             catch
             {
