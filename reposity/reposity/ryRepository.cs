@@ -55,5 +55,15 @@ namespace Repository
                 return d;
             }
         }
-    }
+		public ry jcsjh(string sjh)
+		{
+			string executeSql = @"select * from ry t where  t.sjh=@lname";
+			using (var db = Connection)
+			{
+				var condition = new { lname = sjh};
+				ry d = db.DbConnecttion.Query<ry>(executeSql, condition).FirstOrDefault();
+				return d;
+			}
+		}
+	}
 }

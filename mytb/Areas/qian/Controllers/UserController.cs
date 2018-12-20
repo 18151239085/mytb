@@ -41,15 +41,23 @@ namespace mytb.Controllers
             var model = HttpContext.Session.Get("CurrentUser");//获取session
             return model != null;
         }
-		public bool DORegister()
+		public string DORegister()
 		{
 			ry ry = new ry();
 			var updateResult = TryUpdateModelAsync<ry>(ry);
+			ry tt= ryRepository.jcsjh(ry.sjh);//查询手机号是否在人员表中出现
+			if (tt!=null) {
+				return "手机号已存在";
+			}//如果tt为null，就代表没有这个手机号，可以接着注册
 			ry.id = Guid.NewGuid().ToString();
 			ry.create_time = DateTime.Now;
 			ry.rylx = 1;
 			bool t = this.ryRepository.insertry(ry);
-			return t;
+			if (t)
+			{
+				return "用户未注册，可以正常登陆";
+			}
+			return "用户名已存在,请重新注册";
 		}
 		public string DOLogin()
 		{
