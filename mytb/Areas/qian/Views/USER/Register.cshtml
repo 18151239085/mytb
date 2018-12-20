@@ -175,6 +175,15 @@
 			obj.css("color", "rgb(51,51,51)");
 			obj.parent().parent().css("border", "");
 			});
+		//js表达式验证是否为11位有效手机号码
+		function isPoneAvailable(str) {
+			var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+			if (!myreg.test(str)) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 		function register() { 
 			var yhm = $("#yhm").val();
 			if (yhm=="") { 
@@ -183,8 +192,9 @@
 				return false;
 			}
 			var sjh = $("#sjh").val();
-			if (sjh == "") {
-				alert("请你将信息填全，便于后期能够联系到你");
+			//isPoneAvailable(sjh)  判断这个返回的true还是flase
+			if (!isPoneAvailable(sjh)) {
+				alert("手机号输入有误，请重新输入");
 				$("#sjh").focus();
 				return false;
 			}
@@ -194,15 +204,22 @@
 				$("#mm").focus();
 				return false;
 			}
+			//Jquery利用is(“:checked”)判断单选框是不是被选中
+			if (!$("#AgreeTerms").is(':checked')) {
+				alert("您尚未同意使用条款，请点击确定!");
+				return false;
+			}
 			$.ajax({
 				url: "/qian/USER/DORegister",
 				data: $("#register").serialize(),
 				success: function (data) {
-					if (data) {
+					if (data == "用户未注册，可以正常登陆") {
 						alert("你已注册成功，请去登录");
 						window.location.href = "/qian/USER/Login";
-					} else {
+					} else if (data == "用户名已存在,请重新注册") {
 						alert("用户名已存在，请重新输入");
+					} else if (data =="手机号已存在") { 
+						alert("手机号已存在，请重新输入");
 					}
 				}
 			});

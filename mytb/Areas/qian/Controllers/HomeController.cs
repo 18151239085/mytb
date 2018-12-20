@@ -9,6 +9,7 @@ using Models;
 using Repository;
 using SmartMap.NetPlatform.Core;
 using SmartMap.NetPlatform.Core.Controllers;
+using SmartMap.NetPlatform.Core.KendoUI;
 
 namespace mytb.Controllers
 {
@@ -33,5 +34,11 @@ namespace mytb.Controllers
 			top.attach = pic;
 			return View(top);
 		}
-    }
+		//获取帖子列表
+		public IActionResult gettzlist()
+		{
+			KendoGridPost post = new KendoGridPost();
+			return this.Json(tzbRepository.GridtzDataList(post.Take, post.Page, post.Sort));
+		}
+	}
 }
