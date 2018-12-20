@@ -72,11 +72,11 @@ namespace Repository
 		}
 		public virtual DataSourceResult GridtzDataList(int take, int page, IList<Sort> sorts)
 		{
-			String sql = @"select * from tzb";
+			String sql = @"select * from tzb c ";
 			using (var db = Connection)
 			{
 				long dc = 0;
-				IList<dynamic> datas = db.Page(page, take, out dc, sql, "order by c.create_time desc ");
+				IList<dynamic> datas = db.Page(page, take, out dc, sql, " order by c.create_time desc ");
 				return new DataSourceResult() { Data = datas, Total = (int)dc };
 			}
 		}
