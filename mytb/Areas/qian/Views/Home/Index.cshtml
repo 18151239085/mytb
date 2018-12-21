@@ -6,107 +6,125 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>贴吧</title>
-    <link rel="stylesheet" href="~/lib/layui/css/layui.css" />
-    <link rel="stylesheet" href="/content/css/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/content/css/swiper/dist/css/swiper.css" />
-    <link rel="stylesheet" id="layuicss-layer" href="~/lib/layui/css/modules/layer/default/layer.css" media="all">
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
+	<meta charset="UTF-8">
+	<title>贴吧</title>
+	<link rel="stylesheet" href="~/lib/layui/css/layui.css" />
+	<link rel="stylesheet" href="/content/css/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/content/css/swiper/dist/css/swiper.css" />
+	<link rel="stylesheet" id="layuicss-layer" href="~/lib/layui/css/modules/layer/default/layer.css" media="all">
+	<link rel="stylesheet" href="~/lib/swiper/dist/css/swiper.css">
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.common.min.css" />
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.material.min.css" />
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.default.mobile.min.css" />
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.common.core.min.css" />
+	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.dataviz.uniform.min.css" />
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
 
-        .main-box {
-            margin: 0 auto;
-            width: 1000px;
-            border: 1px solid red;
-            height: 1700px;
-        }
+		.main-box {
+			margin: 0 auto;
+			width: 1000px;
+			border: 1px solid red;
+			height: 1700px;
+		}
 
-        #lbt {
-            margin-bottom: 12px;
-            height: 500px;
-            border: 1px solid #ccc;
-        }
+		#lbt {
+			margin-bottom: 12px;
+			height: 500px;
+			border: 1px solid #ccc;
+		}
 
-            #lbt .left {
-                display: inline-block;
-                height: 353px;
-                /*width:670px;*/
-                float: left;
-                overflow: hidden;
-                /*border:1px solid red;*/
-            }
+			#lbt .left {
+				display: inline-block;
+				height: 353px;
+				width: 1000px;
+				float: left;
+				overflow: hidden;
+				/*border:1px solid red;*/
+			}
 
-        #main {
-            width: 1000px;
-            margin: 0 auto;
-            border: 1px solid #ccc;
-            height: 1000px;
-            margin-top: 35px;
-        }
+		#main {
+			width: 1000px;
+			margin: 0 auto;
+			border: 1px solid #ccc;
+			height: 1000px;
+			margin-top: 35px;
+		}
 
-            #main .left {
-                float: left;
-                width: 205px;
-                border: 1px solid #ccc;
-                height: 905px;
-                display: inline-block;
-                padding: 32px;
-                margin: 10px;
-            }
+			#main .left {
+				float: left;
+				width: 205px;
+				border: 1px solid #ccc;
+				height: 905px;
+				display: inline-block;
+				padding: 32px;
+				margin: 10px;
+			}
 
-            #main .right {
-                float: left;
-                margin-left: 10px;
-                width: 621px;
-                height: 905px;
-                border: 1px solid #ccc;
-                display: inline-block;
-                padding: 20px;
-                margin: 10px;
-            }
+			#main .right {
+				float: left;
+				margin-left: 10px;
+				width: 646px;
+				height: 905px;
+				border: 1px solid #ccc;
+				display: inline-block;
+				padding: 20px;
+				margin: 10px;
+			}
 
-        #foot {
-            height: 100px;
-            border: 1px solid #ccc;
-            width: 946px;
-            padding: 20px;
-        }
+		#foot {
+			height: 100px;
+			border: 1px solid #ccc;
+			width: 946px;
+			padding: 20px;
+		}
 
-        .ft {
-            /*position: fixed;*/
-            width: 105px;
-            height: 50px;
-            /*border: 1px solid #e8e8e8;*/
-            /*top: 100px;
-            left: 200px;*/
-			padding:14px 23px;
-        }
+		.ft {
+			/*position: fixed;*/
+			width: 105px;
+			height: 50px;
+			/*border: 1px solid #e8e8e8;*/
+			/*top: 100px;
+			left: 200px;*/
+			padding: 14px 23px;
+		}
 
-            .ft button {
-                width: 100px;
-                height: 50px;
-                background-color: #fff;
-                font-size: 25px;
-            }
+			.ft button {
+				width: 100px;
+				height: 50px;
+				background-color: #fff;
+				font-size: 25px;
+			}
 
-        .right li {
-            height: 30px;
-            line-height: 30px;
-        }
+		.right li {
+			height: 30px;
+			line-height: 30px;
+		}
 
-            .right li a {
-                display: block;
-            }
+			.right li a {
+				display: block;
+			}
 
-                .right li a:hover {
-                    background: #e8e8e8;
-                    color: black;
-                }
-    </style>
+				.right li a:hover {
+					background: #e8e8e8;
+					color: black;
+				}
+
+		#fwdt h3 {
+			font-size: 30px;
+			color: #666;
+			padding: 10px 0 10px 10px;
+		}
+
+		.left_swiper {
+			height: 415px;
+			border: 1px solid #e8e8e8;
+		}
+
+	</style>
 </head>
 
 <body>
@@ -116,6 +134,30 @@
 		<div class="container" id="lbt">
 			<div class="left">
 				<div class="ft"><button onclick="btn_ft()" id="ft">发帖</button></div>
+				<div class="left_swiper">
+					<div class="swiper-container" id="swiper-single">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<img src="content/image/1.jpg">
+							</div>
+							<div class="swiper-slide">
+								<img src="content/image/2.jpg">
+							</div>
+							<div class="swiper-slide">
+								<img src="content/image/3.jpg">
+							</div>
+							<div class="swiper-slide">
+								<img src="content/image/4.jpg">
+							</div>
+							<div class="swiper-slide">
+								<img src="content/image/5.jpg">
+							</div>
+						</div>
+						<div class="swiper-pagination"></div>
+						<div class="swiper-button-next swiper-btn1"><i class="fa fa-angle-right fa-2x"></i></div>
+						<div class="swiper-button-prev swiper-btn1"><i class="fa fa-angle-left fa-2x"></i></div>
+					</div>
+				</div>
 			</div>
 			@*<div class="right">
 					<img src="/content/image/bdtb.png" />
@@ -128,12 +170,19 @@
 			<div class="right">
 				<div class="container" id="fwdt">
 					<h3 class="big-title">贴子列表</h3>
-					<div class="gridPanel" id="horizontal">
-						<table id="gridList"></table>
+					<div class="row">
+						<div class="panel-body">
+
+							<div id="houseChecking_right" class="col-sm-10">
+								<div class="gridPanel" id="horizontal">
+									<table id="gridList"></table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
 			</div>
+		</div>
 		<div class="container" id="foot">
 			滴不滴不滴不滴不滴不
 		</div>
@@ -161,11 +210,37 @@
 	<script src="~/lib/kendoui/js/kendo.all.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 	<script src="~/lib/layui/layui.js"></script>
+	<script src="~/lib/swiper/dist/js/swiper.js"></script>
 	<script src="~/js/layer.js"></script>
 	<script src="~/js/SmartFrame.js"></script>
 	<script src="~/js/SmartFLowOperates.js"></script>
+	<script src="~/lib/kendoui/js/cultures/kendo.culture.zh-CN.min.js"></script>
+	<script src="~/lib/kendoui/js/messages/kendo.messages.zh-CN.min.js"></script>
 	<script>
+		//swiper
+		var swiper = new Swiper('#swiper-single', {
+			loop: true,
+			speed: 600,
+			grabCursor: true,
+			parallax: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+				renderBullet: function (index, className) {
+					return '<span class="' + className + '">' + (index + 1) + '</span>';
+				},
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
 		$(document).ready(function () {
+			kendo.culture("zh-CN");
 			$("#gridList").SmartGrid({
 				dataSource: {
 					batch: true,
@@ -176,7 +251,7 @@
 					transport: {
 						type: "odata",
 						read: {
-							url: "/qian/home/gettzlist" ,
+							url: "/qian/home/gettzlist",
 							contentType: "application/json",
 							type: "POST"
 						}, parameterMap: function (data, operation) {
@@ -185,7 +260,7 @@
 					},
 					//filter: { field: "F_LAYERS", operator: "eq", value: 1 }
 				},
-				height: 500,
+				height: 840,
 				groupable: false,
 				sortable: true,
 				pageable: {
@@ -199,12 +274,12 @@
 					template: "<span class='row-number'></span>", width: 50
 				},
 				{
-					field: "MH_TITLE",
+					field: "bt",
 					title: "标题",
 					width: 200
 				},
 				{
-					field: "create_time",
+					field: "sj",
 					title: "时间",
 					width: 100
 				}
