@@ -276,6 +276,7 @@
 				{
 					field: "bt",
 					title: "标题",
+					template: '<a href="/qian/ftz/tail?keyValue=#:id#">#: bt #</a>',
 					width: 200
 				},
 				{
@@ -292,8 +293,28 @@
 						var rowLabel = $(this).find(".row-number");
 						$(rowLabel).html(index);
 					});
+					$(function () { $("[data-toggle='tooltip']").tooltip(); });
 				},
 			});
+			// 单击行事件
+			//$("#gridList").on('click', 'tr .link', function () {
+			//	var grid = $('#gridList').data("kendoGrid");
+			//	var row = $(this).closest("tr");
+			//	var dataItem = grid.dataItem(row);
+			//	var keyValue = dataItem.id;   //获取主键
+			//	$.modalOpen({
+			//		id: "Form",
+			//		title: "帖子详细页面",
+			//		url: "/qian/ftz/tail?keyValue=" + keyValue,
+			//		width: "1024px",
+			//		height: "1000px",
+			//		callBack: function (iframeId) {
+
+			//			top.frames[iframeId].submitForm(reloading);
+			//		}
+			//	});
+
+			//});
 		});
 		function btn_ft() {
 			$.ajax({

@@ -68,11 +68,11 @@ namespace Repository
 					return file;
 				}
 			}
-			return null;
+			return new tzb();
 		}
 		public virtual DataSourceResult GridtzDataList(int take, int page, IList<Sort> sorts)
 		{
-			String sql = @"select c.bt,date_format(c.create_time, '%Y-%m-%d %H:%i') as sj from tzb c ";
+			String sql = @"select c.id,c.bt,date_format(c.create_time, '%Y-%m-%d %H:%i') as sj from tzb c ";
 			using (var db = Connection)
 			{
 				long dc = 0;

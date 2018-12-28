@@ -91,12 +91,12 @@ namespace Repository
 			using (var db = Connection)
 			{
 				List<attach> file = db.DbConnecttion.Query<attach>(sql, null).ToList();
-				if (file != null)
+				if (file.Count>0)
 				{
 					return file;
 				}
 			}
-			return null;
+			return new List<attach>();
 		}
 	}
 }
