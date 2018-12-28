@@ -53,6 +53,7 @@ namespace reposity.MyGrid
         static public MyGrid getMyGrid(Controller Controller) {
             try
             {
+                // HttpRequestStraem 如何转变为文本
                 var memery = new System.IO.MemoryStream();
                 // Controller.Request.Body是post请求体,将请求体复制memery
                 Controller.Request.Body.CopyTo(memery);
