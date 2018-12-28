@@ -19,12 +19,14 @@ namespace mytb.Controllers
 	{
 		private readonly attachRepository attachRepository;
 		private readonly tzbRepository tzbRepository;
+		private readonly yjfkRepository yjfkRepository;
 		private IOptions<FtpConnectionString> _FtpConnection;
 		public ftzController(IOptions<List<PlatConnectionString>> configs, IOptions<FtpConnectionString> ftpConnection)
 		{
 			this._configs = configs;
 			this.attachRepository = new attachRepository(getConnectionByName("Portal"));
 			this.tzbRepository = new tzbRepository(getConnectionByName("Portal"));
+			this.yjfkRepository = new yjfkRepository(getConnectionByName("Portal"));
 			this._FtpConnection = ftpConnection;
 		}
 		public IActionResult ft(string keyValue)
@@ -208,13 +210,45 @@ namespace mytb.Controllers
 		}
 		public IActionResult tail(string keyValue)
 		{//打开当前页即可
+		 //帖子和帖子对应的附件
 			tzb tzb = this.tzbRepository.GetById(keyValue);
 			//一条贴子可能对应多张图片
 			List<attach> attach= this.attachRepository.GetATTACH(tzb.id);
-			mh_attach_tzb at = new mh_attach_tzb();
-			at.tzb = tzb;
-			at.attach = attach;
-			return View(at);
+			//回复的内容----
+			List<yjfk> yjfk = this.yjfkRepository.Gethflb(tzb.id);
+			mh_attach_tzb_yjfk mh_attach_tzb_yjfk = new mh_attach_tzb_yjfk();
+			mh_attach_tzb_yjfk.tzb = tzb;
+			mh_attach_tzb_yjfk.yjfk = yjfk;
+			mh_attach_tzb_yjfk.attach = attach;
+			return View(mh_attach_tzb_yjfk);
+		}
+		public string savehf(IFormCollection collection)
+		{
+			yjfk yjfk = new yjfk();
+
+			try {
+				if (ModelState.IsValid) {
+					var model = HttpContext.Session.Get("CurrentUser");//获取session
+					if (model == null)
+					{
+						return "nologin";
+					}
+					else {
+						string hex = System.Text.Encoding.Default.GetString(model);//获取json数据
+						ry sta = JsonConvert.DeserializeObject<ry>(hex);//转换成model数据
+						var updateResult = TryUpdateModelAsync<yjfk>(yjfk);
+						yjfk.ry_id = sta.id;
+						yjfk.status = 0;
+						yjfk.hf_time = DateTime.Now;
+						yjfkRepository.AddData(yjfk);
+						return "success";
+					}
+				}
+				return "fail";
+			}
+			catch (Exception ex) {
+				return "fail";
+			}
 		}
 	}
 }

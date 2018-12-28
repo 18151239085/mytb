@@ -12,6 +12,8 @@ namespace Models
 		public virtual string hf_nr { get; set; }
 		public virtual DateTime hf_time { get; set; }
 		public virtual string ry_id { get; set; }
-	
+		public virtual int  status { get; set; }
+		public virtual string plnr { get; set; }
+
 	}
 }

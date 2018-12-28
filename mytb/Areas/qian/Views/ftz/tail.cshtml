@@ -3,19 +3,14 @@
 	ViewData["Title"] = "详细信息";
 	Layout = null;
 }
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<title>石嘴山市不动产交易二级市场</title>
+	<title>帖子详细页面</title>
 	@*<link rel="stylesheet" href="~/lib/layui/css/layui.css" media="all">*@
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="/Modules/SmartFrame.Portal.Module/Content/css/base.css">
-	<link rel="stylesheet" href="/Modules/SmartFrame.Portal.Module/Content/css/style.css">
-	<link rel="stylesheet" href="~/lib/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="~/lib/swiper/dist/css/swiper.css">
+	
 	<style>
 		.main-box {
 			background: #eee;
@@ -37,109 +32,115 @@
 		.pagination {
 			margin: 0;
 		}
+		#respond {
+		  margin:20px auto;
+		  width:1000px;
+		  height:500px;
+		}
+		textarea {
+		height:400px;
+		width:800px;
+		}
+		.hflb p {
+			width: 186px;
+			float: right;
+		}
+		.hflb li {
+			height: 48px;
+			line-height: 10px;
+			list-style: none;
+			/*margin: 20px;*/
+		}
+		.hf .uppercase {
+			font-weight: 400;
+			font-size: 18px;
+		}
+		.tz {
+		padding:0 0 10px 10px;
+		}
+		#respond input {
+		width:50px;
+		height:50px;
+		background-color:orange;
+		}
 	</style>
 </head>
 <body>
-	<!--头部信息-->
-	@await Component.InvokeAsync("tbHeader")
-	@model Models.mh_attach_tzb
-	<!--内容信息-->
-	<div class="main-box">
-		<div class="container main-container">
-			<div class="col-lg-12 blog__content mb-30">
-				<ol class="breadcrumb">
-					<li><a href="/Menhu/Home/"><i class="fa fa-home"></i></a></li>
-					<li><a href="#" id="sup"></a></li>
-					<li class="active"><a href="#">@Html.DisplayFor(m => m.tzb.bt, new { @class = "", @readonly = true })</a></li>
-				</ol>
-				<article class="entry">
-					<div class="single-post__entry-header entry__header">
-						<h1 class="single-post__entry-title text-center"> @Html.DisplayFor(m => m.tzb.content, new { @class = "", @readonly = true }) </h1>
-						<ul class="entry__meta text-center">
-							<li class="entry__meta-date"> <i class="fa fa-calendar"></i> @Html.DisplayFor(m => m.tzb.create_time)</li>
-						</ul>
+	@model Models.mh_attach_tzb_yjfk
+	@using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { name = "saveForm", id = "saveForm", @class = "layui-form" }))
+	{
+		@Html.HiddenFor(m => m.tzb.id)
+		<!--内容信息-->
+		<div class="main-box">
+			<div class="container main-container">
+				<div class="col-lg-12 blog__content mb-30" style="margin:20px;">
+					<div class="tz">
+						<h3>@Model.tzb.content</h3>
 					</div>
-					<div class="entry__img-holder"></div>
-					<div class="entry__article">
-						<div id="inf"></div>
-						<figure>
-							@{
-								@foreach (var item in Model.attach)
+					<div class="entry-comments mt-30" style="height:500px;border:1px solid #ccc;">
+						<div class="title-wrap mt-40 hf" style="padding:20px;">
+							<h5 class="uppercase">回复列表</h5>
+						</div>
+						<article class="entry  hflb">
+							<ul class="comment-list">
+								@foreach (var tag in Model.yjfk)
 								{
-									if (Model.tzb.id == item.yw_id)
-									{
-										<img data-original="/qian/ftz/DownloadFile?name=@item.tp_name&keyValue=@Html.DisplayFor(m => m.tzb.id)" src="/qian/ftz/DownloadFile?name=@System.Web.HttpUtility.UrlEncode(item.tp_name)&keyValue=@Html.DisplayFor(m => m.tzb.id)" alt="@item.tp_name" title="@Model.tzb.bt" class="lazyload" />
-
-									}
-
+									<li class="comment">
+										<h3 class="comment-author" style="width:300px;float:left;font-weight:400">@tag.hf_nr</h3>
+										<p style="width:54px;">回复</p>
+										<p class="entry__meta-date"> <i class="ui-date"></i>@Html.DisplayFor(m => @tag.hf_time)</p>
+									</li>
 								}
-							}
-							@*<figcaption>图2，说明文字</figcaption>*@
-						</figure>
+							</ul>
+						</article>
 					</div>
-				</article>
+					<div id="respond">
+						<div class="title-wrap">
+							<h5 class="comment-respond__title uppercase">发表评论</h5>
+						</div>
+						<form id="form2" class="comment-form" onsubmit="return false;">
+							<!--  表单前后台通信是根据name属性的，所以你想后台接收一定要设置好name属性-->
+							<input name="tzb_id" id="tzb_id" value="@Model.tzb.id" type="hidden">
+							<p class="comment-form-comment">
+								<textarea id="plnr" name="hf_nr" rows="8" placeholder="请输入评论内容..."></textarea>
+							</p>
+							<p class="comment-form-submit">
+								<input id="btn_submit" type="submit" class="btn btn-lg btn-color btn-button" value="提交" onclick="up()">
+							</p>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	}
+		<script src="~/lib/jquery/dist/jquery.js"></script>
+		<script src="~/lib/jquery/dist/jquery.newsTicker.min.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 
-	<script src="~/lib/jquery/dist/jquery.js"></script>
-	<script src="~/lib/jquery/dist/jquery.newsTicker.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-	@*<script src="~/lib/layui/layui.js"></script>*@
-	@*<script src="~/js/SmartFrame.js"></script>*@
-	@*<script src="~/lib/kendoui/js/kendo.all.min.js"></script>*@
-	<script src="/Modules/SmartFrame.Portal.Module/Content/js/script.js"></script>
-	<script src="/Modules/SmartFrame.Portal.Module/Content/js/highcharts.js"></script>
-	<script src="/Modules/SmartFrame.Portal.Module/Content/js/exporting.js"></script>
-	@*<script src="/Modules/SmartFrame.Portal.Module/Content/js/tubiao.js"></script>*@
-	<script src="~/lib/swiper/dist/js/swiper.js"></script>
-	<script>
-		$(function () {
-			$("#inf").html($("#self_MH_NEWS_MH_INF").val());
-			$('.tabs__trigger').on('click', function (e) {
-				var currentAttrValue = $(this).attr('href');
-				$('.tabs__content-trigger ' + currentAttrValue).stop().fadeIn(1000).siblings().hide();
-				$(this).parent('li').addClass('tabs__item--active').siblings().removeClass('tabs__item--active');
-				e.preventDefault();
-			});
-
-			//Scroll to Top
-			$(window).scroll(function () {
-				scrollToTop();
-			});
-
-			function scrollToTop() {
-				var scroll = $window.scrollTop();
-				var $backToTop = $("#back-to-top");
-				if (scroll >= 50) {
-					$backToTop.addClass("show");
-				} else {
-					$backToTop.removeClass("show");
+		<script>
+			function up() {
+				if ($("#plnr").val() == "") {
+					alert("不能提交");
+					return false;
 				}
+				keyvalue = $("#tzb_id").val();
+				$.ajax({
+					url: "/qian/ftz/savehf?date=" + new Date().getTime(),
+					//  $("#form2").serialize() 这一句代码是将表单的数据 变成字典 ， 你也可以手动写的 ，比如 data:{"id",123,"conten",$("content").val()}
+					data: $("#form2").serialize(),
+					success: function (data) {
+						if (data == "nologin") {
+							alert("请登录");
+							window.location.href = "/qian/user/login";
+						} else if (data == "success") {
+							alert("提交成功");
+							window.location.href = "/qian/ftz/tail?keyvalue=" + keyvalue;
+						} else {
+							alert("提交失败");
+						}
+					}
+				});
 			}
-
-			$('a[href="#top"]').on('click', function () {
-				$('html, body').animate({ scrollTop: 0 }, 1000, "easeInOutQuint");
-				return false;
-			});
-
-			$("#sup").html(decodeURI(GetQueryString("sup")));
-			$("#sup").attr("href", unescape(GetQueryString("supUrl")));
-			console.log(unescape(GetQueryString("supUrl")));
-
-			//富文本表格添加样式
-			$("table").addClass("table table-bordered table-hover table-condensed");
-
-		})
-		$(function () {
-
-		})
-		//获取search
-		function GetQueryString(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-			var r = window.location.search.substr(1).match(reg);
-			if (r != null) return r[2]; return null;
-		}
-	</script>
-</body>
+		</script>
+	</body>
 </html>
