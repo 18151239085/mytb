@@ -65,5 +65,22 @@ namespace Repository
 				return d;
 			}
 		}
+		public virtual DataSourceResult GridDataList(int take, int page, IList<Sort> sorts, Filter filter)
+		{
+			#region 查询脚本
+			string sql = @"select a.*,
+                            CASE a.rylx when 0 then '后台' 
+                            WHEN 1 then '前端用户' 
+                            ELSE '无效用户' end as lx 
+                            from ry a 
+                            where a.id is not null ";
+			#endregion
+			using (var db = Connection)
+			{
+				long dc = 0;
+				IList<dynamic> datas = db.Page(page, take, out dc, sql, "order by create_time desc ");
+				return new DataSourceResult() { Data = datas, Total = (int)dc };
+			}
+		}
 	}
 }

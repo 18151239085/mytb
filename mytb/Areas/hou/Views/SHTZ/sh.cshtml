@@ -1,1 +1,123 @@
-﻿111111111111
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = null;
+}
+@model Models.zh
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贴吧后台</title>
+	<link rel="stylesheet" href="~/lib/layui/css/layui.css" />
+	<style>
+		.layui-nav-side {
+		position:fixed;
+		top:50px;
+		bottom:0px;
+		left:0;
+		overflow-x:hidden;
+		z-index:999;
+		}
+		.zy {
+		height:500px;
+		width:1500px;
+		margin-left:223px;
+		margin-top:20px;
+		}
+		.zy_div {
+			height:84px;
+			background: rgba(255,255,255,0.1);
+			box-shadow: 0 0px 24px rgba(0,0,0,0.1);
+			padding:20px;
+		}
+			.zy_div span {
+			display:block;
+			margin-top:29px;
+			}
+		.div_lym {
+		height:120px;
+		width:1500px;
+		margin-top:20px;
+		/*margin-left:230px;*/
+		/*border:1px solid red;*/
+		}
+			.div_lym .first {
+			width:129px;
+			height:100px;
+			/*border:1px solid #ccc;*/
+			padding:10px;
+			float:left;
+			margin-left:40px;
+			margin-top:20px;
+			font-size:18px;
+			font-weight:700;
+			}
+			.div_lym .second {
+				width: 155px;
+				height: 100px;
+				/*border: 1px solid #ccc;*/
+				float: right;
+				margin-right: 88px;
+				margin-top: 20px;
+				font-size: 18px;
+				font-weight: 700;
+				padding:10px;
+			}
+	</style>
+</head>
+
+<body>
+	@await Component.InvokeAsync("MenhuTop")
+	<div class="main-box">
+		<div class="dh">
+			<ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="test">
+				<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="javascript:;">用户管理</a>
+					<dl class="layui-nav-child">
+						<dd><a href="/hou/yhgl/index">人员管理</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">帖子管理</a>
+					<dl class="layui-nav-child">
+						<dd><a href="">移动模块</a></dd>
+						<dd><a href="">后台模版</a></dd>
+						<dd><a href="">电商平台</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">回复管理</a>
+					<dl class="layui-nav-child">
+						<dd><a href="">移动模块</a></dd>
+						<dd><a href="">后台模版</a></dd>
+						<dd><a href="">电商平台</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<div class="zy">
+			<div class="zy_div">
+			   欢迎使用[贴吧]<br />
+				<span>友情提醒:如果你想获得更佳的用户体验，我们建议您升级浏览器!如果你已经是最新版,请你忽略本条消息</span>
+			</div>
+			<div class="div_lym">
+				<div class="first">南京市贴吧</div>
+				<div class="second">欢迎使用本贴吧</div>
+			</div>
+		</div>
+
+	</div>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/kendoui/js/kendo.all.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="~/lib/layui/layui.js"></script>
+	<script>
+		//注意：导航 依赖 element 模块，否则无法进行功能性操作
+		layui.use('element', function () {
+			var element = layui.element;
+
+		});
+	</script>
+</body>
+</html>

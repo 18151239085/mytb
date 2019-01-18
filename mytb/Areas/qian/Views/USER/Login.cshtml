@@ -206,7 +206,12 @@
 							$.cookie("yhm", "", { expires: 7, path: "/" });
 							$.cookie("mm", "", { expires: 7, path: "/" });
 						}
-						window.location.href = "/qian/Home/index";
+						var url = unescape(GetQueryString("rurl"))
+						if (url != null && url != "" && url != "null") {
+							window.location.href = url;
+						} else { 
+							window.location.href = "/qian/Home/index";
+						}
 					} else {
 						$.modalMsg("用户名或密码错误", 'error');
 						return false;
@@ -214,6 +219,12 @@
 				}
 			});
 
+		}
+		//获取search
+		function GetQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return r[2]; return null;
 		}
 	</script>
 </body>

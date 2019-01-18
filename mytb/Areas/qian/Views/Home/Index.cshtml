@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="/content/css/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="/content/css/swiper/dist/css/swiper.css" />
 	<link rel="stylesheet" id="layuicss-layer" href="~/lib/layui/css/modules/layer/default/layer.css" media="all">
-	<link rel="stylesheet" href="~/lib/swiper/dist/css/swiper.css">
 	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.common.min.css" />
 	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.material.min.css" />
 	<link rel="stylesheet" href="~/lib/kendoui/styles/kendo.default.mobile.min.css" />
@@ -26,31 +25,15 @@
 
 		.main-box {
 			margin: 0 auto;
-			width: 1000px;
+			width: 1226px;
 			border: 1px solid red;
 			height: 1700px;
 		}
-
-		#lbt {
-			margin-bottom: 12px;
-			height: 500px;
-			border: 1px solid #ccc;
-		}
-
-			#lbt .left {
-				display: inline-block;
-				height: 353px;
-				width: 1000px;
-				float: left;
-				overflow: hidden;
-				/*border:1px solid red;*/
-			}
-
 		#main {
 			width: 1000px;
 			margin: 0 auto;
 			border: 1px solid #ccc;
-			height: 1000px;
+			height: 1226px;
 			margin-top: 35px;
 		}
 
@@ -81,24 +64,6 @@
 			width: 946px;
 			padding: 20px;
 		}
-
-		.ft {
-			/*position: fixed;*/
-			width: 105px;
-			height: 50px;
-			/*border: 1px solid #e8e8e8;*/
-			/*top: 100px;
-			left: 200px;*/
-			padding: 14px 23px;
-		}
-
-			.ft button {
-				width: 100px;
-				height: 50px;
-				background-color: #fff;
-				font-size: 25px;
-			}
-
 		.right li {
 			height: 30px;
 			line-height: 30px;
@@ -120,48 +85,181 @@
 		}
 
 		.left_swiper {
-			height: 415px;
+			height: 325px;
 			border: 1px solid #e8e8e8;
 		}
-
+		.main_yc {
+		 width:100px;
+		 position:fixed;
+		 right:-5px;
+		}
+			.main_yc li {
+			 position:relative;
+			 display:block;
+			 width:82px;
+			 height:90px;
+			 list-style:none;
+			 background-color:#fff;
+			 border:1px solid #f5f5f5;
+			 border-top:none;
+			}
+				.main_yc li div {
+				position:relative;
+				width:30px;
+				height:30px;
+				padding-top:20px;
+				margin:0 0 0 27px;
+				}
+					.main_yc li div img {
+					width:30px;
+					height:30px;
+					border:none;
+					}
+					.main_yc li p {
+						margin: 8px 0 0 0;
+						color: #757575;
+						font-size: 14px;
+						text-align: center;
+					}
+		.home-hero {
+		position:relative;
+		margin-bottom:26px;
+		}
+		.home-hero-slide {
+		position:relative;
+		height:460px;
+		overflow:hidden;
+		}
+		.home-hero-sub {
+		 margin-top:14px;
+		 height:160px;
+		
+		}
+		.home-hero-sub .span4 {
+		 width:234px;
+		 margin-left:14px;
+		 float:left;
+		}
+		.home-channel-list {
+		 margin:0;
+		 padding:3px;
+		 list-style-type:none;
+		 font-size:12px;
+		 text-align:center;
+		 background:#5f5750;
+		 height:165px;
+		}
+			.home-channel-list li {
+				position: relative;
+				float: left;
+				width: 70px;
+				height: 82px;
+				padding: 0 3px;
+			}
+				.home-channel-list li a {
+				text-decoration:none;
+				text-align:center;
+				font-size:16px;
+				height:82px;
+				line-height:82px;
+				color:#fff;
+				}
+		.home-hero-sub .span16 {
+			width: 966px;
+			float:left;
+			margin-left:12px;
+		}
+		.home-promo-list li {
+		float:left;
+		width:310px;
+		height:170px;
+		margin-left:12px;
+		border:1px solid red;
+		}
+			.home-promo-list li a {
+			height:170px;
+			display:block;
+			}
+			.home-promo-list li img {
+				width: 310px;
+				height: 170px;
+			}
 	</style>
 </head>
 
 <body>
 	@await Component.InvokeAsync("tbHeader")
 	<div class="main-box">
-
-		<div class="container" id="lbt">
-			<div class="left">
-				<div class="ft"><button onclick="btn_ft()" id="ft">发帖</button></div>
-				<div class="left_swiper">
-					<div class="swiper-container" id="swiper-single">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<img src="content/image/1.jpg">
-							</div>
-							<div class="swiper-slide">
-								<img src="content/image/2.jpg">
-							</div>
-							<div class="swiper-slide">
-								<img src="content/image/3.jpg">
-							</div>
-							<div class="swiper-slide">
-								<img src="content/image/4.jpg">
-							</div>
-							<div class="swiper-slide">
-								<img src="content/image/5.jpg">
-							</div>
+		<div class="main_yc">
+			<ul>
+				<li class="YC">
+					<a href="#" class="fa">
+						<div>
+							<img src="/content/image/sjapp.png"  class="l1" style="display:none">
+							<img src="/content/image/sjapp1.png">
 						</div>
-						<div class="swiper-pagination"></div>
-						<div class="swiper-button-next swiper-btn1"><i class="fa fa-angle-right fa-2x"></i></div>
-						<div class="swiper-button-prev swiper-btn1"><i class="fa fa-angle-left fa-2x"></i></div>
-					</div>
+						<p>手机APP</p>
+					</a>
+				</li>
+				<li class="YC">
+					<a href="#" class="fa">
+						<div>
+							<img src="/content/image/sjapp.png"  class="l1" style="display:none">
+							<img src="/content/image/sjapp1.png">
+						</div>
+						<p>个人中心</p>
+					</a>
+				</li>
+				<li class="YC">
+					<a href="#" class="fa">
+						<div>
+							<img src="/content/image/grzx.png"  class="l1" style="display:none">
+							<img src="/content/image/grzx1.png">
+						</div>
+						<p>联系客服</p>
+					</a>
+				</li>
+				<li class="YC">
+					<a href="#" class="fa">
+						<div>
+							<img src="/content/image/lxkf11.png"  class="l1" style="display:none">
+							<img src="/content/image/lxkf.png">
+						</div>
+						<p>发帖</p>
+					</a>
+				</li>
+				<li class="YC">
+					<a href="#">
+						<div>
+							<img src="/content/image/hdb.png"  class="l1" style="display:none">
+							<img src="/content/image/hdb1.png">
+						</div>
+						<p>回顶部</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		@*<div class="ft"><button onclick="btn_ft()" id="ft">发帖</button></div>*@
+		<div class="home-hero">
+			<div class="home-hero-sub row">
+				<div class="span4">
+					<ul class="home-channel-list clearfix">
+						<li class="exposure top left"><a>选购手机</a></li>
+						<li class="exposure top"><a>企业团购</a></li>
+						<li class="exposure top"><a>F码通道</a></li>
+						<li class="exposure left"><a>米粉卡</a></li>
+						<li class="exposure"><a>以旧换新</a></li>
+						<li class="exposure"><a>花费充值</a></li>
+					</ul>
+				</div>
+				<div class="span16">
+					<ul class="home-promo-list clearfix">
+						<li style="margin-left:0px;"><a><img src="content/image/sub1.jpg"></a></li>
+						<li><a><img src="content/image/sub2.jpg"></a></li>
+						<li style="float:right;"><a><img src="content/image/sub3.jpg"></a></li>
+					</ul>
 				</div>
 			</div>
-			@*<div class="right">
-					<img src="/content/image/bdtb.png" />
-				</div>*@
 		</div>
 		<div class="container" id="main">
 			<div class="left">
@@ -217,6 +315,21 @@
 	<script src="~/lib/kendoui/js/cultures/kendo.culture.zh-CN.min.js"></script>
 	<script src="~/lib/kendoui/js/messages/kendo.messages.zh-CN.min.js"></script>
 	<script>
+		$(".YC").hover(function (event) {
+			var obj = $(event.target);
+			if (!obj.hasClass("YC")) {
+				obj = obj.parents(".YC");
+			}
+			obj.find(".fa").hide();
+			obj.find(".sp").show();
+		}, function (event) {
+			var obj = $(event.target);
+			if (!obj.hasClass("YC")) {
+				obj = obj.parents(".YC");
+			}
+			obj.find(".fa").show();
+			obj.find(".sp").hide();
+		});
 		//swiper
 		var swiper = new Swiper('#swiper-single', {
 			loop: true,
